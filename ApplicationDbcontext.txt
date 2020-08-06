@@ -13,6 +13,7 @@ namespace WorkerAuth
         //summary
         public DbSet<UserAcc> User { get; set; }
 
+        //empty constructor
         public ApplicationDbContext()
         {
 
@@ -22,7 +23,7 @@ namespace WorkerAuth
 
 
         //summary
-        //for the  dependecy injection 
+        //for the  dependency injection 
         //summary
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
