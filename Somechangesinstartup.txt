@@ -1,0 +1,43 @@
+using (var context=new ApplicationDbContext())
+            {
+                //make sure we have the database
+                context.Database.EnsureCreated();
+
+                //if no entries in the useraCC THEN
+                if (!context.User.Any())
+                {
+                    //ADD ITEMS but not in db only in memory
+                    context.User.Add(new UserAcc
+                    {
+                        Id="1",
+                        Username = "Sujin",
+                        Email = "Sujin@example.com",
+                        PasswordHashed = "asdada",
+                        PhoneNumber = "121313",
+                        InactiveUsers = false
+                    });
+
+                    
+                    
+                    //counting no of user from memeory
+                    var count = context.User.Local.Count();
+                    //counting no of user from database
+                    var countDb = context.User.Count();
+
+                    //checking the values of the first element memeory
+                    var firstelem = context.User.Local.FirstOrDefault();
+                    //checking the values of the first element database
+                    var firstlemdb = context.User.FirstOrDefault();
+
+                    //this will commit to the db
+                    context.SaveChanges();
+
+                    count = context.User.Local.Count();
+                    countDb = context.User.Count();
+
+                    //checking the values of the first element
+                     firstelem = context.User.Local.FirstOrDefault();
+                     firstlemdb = context.User.FirstOrDefault();
+                }
+            }
+            
