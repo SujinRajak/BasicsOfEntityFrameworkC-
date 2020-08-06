@@ -1,0 +1,38 @@
+using Microsoft.EntityFrameworkCore;
+
+namespace WorkerAuth
+{
+    
+    //summary
+    //the relational model of the application
+    //summary
+    public class ApplicationDbContext : DbContext
+    {
+        //summary
+        //the  setting for user table of the application
+        //summary
+        public DbSet<UserAcc> User { get; set; }
+
+        public ApplicationDbContext()
+        {
+
+        }
+
+        
+
+
+        //summary
+        //for the  dependecy injection 
+        //summary
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("Server=DESKTOP-THG2BP2;Database=Worker;Trusted_Connection=True;MultipleActiveResultSets=true");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+    }
+}
